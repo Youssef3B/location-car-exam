@@ -15,12 +15,17 @@ class Car extends Model
         'model',
         'year',
         'fuel_type',
+        'Status',
         'mileage',
         'price',
+        'priceRental',
         'is_rental',
         'description',
-        'image',
-        'user_id',
+        'image'
+    ];
+
+    protected $casts = [
+        'is_rental' => 'boolean',
     ];
 
     public function user()
@@ -37,4 +42,8 @@ class Car extends Model
     {
         return $this->hasOne(Sale::class);
     }
+public function owner()
+{
+    return $this->belongsTo(User::class, 'user_id'); // Adjust foreign key if needed
+}
 }

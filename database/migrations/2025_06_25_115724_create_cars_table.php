@@ -19,12 +19,13 @@ return new class extends Migration
           $table->string('model');
           $table->year('year');
           $table->string('fuel_type');
+          $table->string('Status')->default('available'); 
           $table->integer('mileage')->nullable(); 
           $table->decimal('price', 10, 2);
+          $table->decimal('priceRental');
           $table->boolean('is_rental')->default(false); 
           $table->text('description')->nullable();
           $table->string('image')->nullable();
-          $table->foreignId('user_id')->constrained()->onDelete('cascade'); 
           $table->timestamps();
 });
 

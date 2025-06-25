@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboarduserController;
+use App\Http\Controllers\DashboardadminController;
 
 
 /*
@@ -18,6 +20,21 @@ use App\Http\Controllers\AuthController;
 
 // routes/web.php
 Route::get('/', [HomeController::class, 'home']);
+Route::get('/dashboardUser', [DashboarduserController::class, 'DahboardUser']);
+Route::get('/admin', [DashboardadminController::class, 'DashboardAdminView'])->name('admin.dashboard');
+Route::get('/admin/cars', [DashboardadminController::class, 'DashboardAdminCarsView'])->name('admin.cars');
+Route::get('/admin/rentals', [DashboardadminController::class, 'DashboardAdminRentalsView'])->name('admin.rentals');
+Route::get('/admin/sales', [DashboardadminController::class, 'DashboardAdminSalesView'])->name('admin.sales');
+Route::get('/admin/users', [DashboardadminController::class, 'DashboardAdminUsersView'])->name('admin.users');
+Route::get('/admin/messages', [DashboardadminController::class, 'DashboardAdminMessagesView'])->name('admin.messages');
+
+
+
+Route::post('/admin/cars', [DashboardadminController::class, 'store'])->name('cars.store');
+Route::get('/admin/cars', [DashboardadminController::class, 'manageCars'])->name('admin.cars');
+
+
+    
 Route::get('/login', [AuthController::class, 'Login'])->name('login');
 Route::post('/login', [AuthController::class, 'loginPost'])->name('login.post');
 Route::get('/register', [AuthController::class, 'Register'])->name('register');
