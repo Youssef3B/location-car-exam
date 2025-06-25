@@ -69,6 +69,45 @@ public function store(Request $request)
     return redirect()->back()->with('success', 'Car added successfully!');
 }
 
+public function update(Request $request, Car $car)
+{
+    $validated = $request->validate([
+        'brand' => 'required|string|max:255',
+        'model' => 'required|string|max:255',
+        'year' => 'required|digits:4|integer|min:1900|max:'.(date('Y')+1),
+        'fuel_type' => 'required|string|max:255',
+        'Status' => 'required|string|in:available,under_review,unavailable',
+        'mileage' => 'nullable|integer|min:0',
+        'price' => 'required|numeric|min:0',
+        'priceRental' => 'nullable|required_if:is_rental,1|numeric|min:0',
+        'is_rental' => 'required|boolean',
+        'description' => 'nullable|string',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+    ]);
+
+    // Handle file upload if new image is provided
+    if ($request->hasFile('image')) {
+        // Delete old image if it exists
+        if ($car->image) {
+            Storage::disk('public')->delete($car->image);
+        }
+        $validated['image'] = $request->file('image')->store('cars', 'public');
+    }
+
+    // Update car record
+    $car->update($validated);
+
+    return redirect()->back()->with('success', 'Car updated successfully!');
+}
+
+  public function destroy(Car $car)
+    {
+
+        $car->delete(); 
+
+        return redirect()->back()->with('success', 'Car deleted successfully!');
+    }
+
 
 
 

@@ -31,10 +31,12 @@ Route::get('/admin/messages', [DashboardadminController::class, 'DashboardAdminM
 
 
 Route::post('/admin/cars', [DashboardadminController::class, 'store'])->name('cars.store');
+Route::put('/admin/cars/{car}', [DashboardadminController::class, 'update'])->name('cars.update');
+Route::delete('/admin/cars/{car}', [DashboardadminController::class, 'destroy'])->name('cars.destroy');
 Route::get('/admin/cars', [DashboardadminController::class, 'manageCars'])->name('admin.cars');
 
 
-    
+
 Route::get('/login', [AuthController::class, 'Login'])->name('login');
 Route::post('/login', [AuthController::class, 'loginPost'])->name('login.post');
 Route::get('/register', [AuthController::class, 'Register'])->name('register');
