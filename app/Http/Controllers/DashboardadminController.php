@@ -24,10 +24,6 @@ class DashboardadminController extends Controller
 
 
 
-    public function DashboardAdminMessagesView()
-    {
-        return view('adminDashboard.messages');
-    }
 
 
 

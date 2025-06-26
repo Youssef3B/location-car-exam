@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboarduserController;
 use App\Http\Controllers\DashboardadminController;
 use App\Http\Controllers\ManageUsersController;
 use App\Http\Controllers\ManageSalesController;
+use App\Http\Controllers\ManageMessagesController;
 
 
 /*
@@ -43,6 +44,9 @@ Route::post('/users/{user}/toggle-block', [ManageUsersController::class, 'toggle
 
 
 Route::get('/admin/sales', [ManageSalesController::class, 'index'])->name('admin.sales');
+
+Route::get('/admin/messages', [ManageMessagesController::class, 'index'])->name('admin.messages');
+
 
 
 
