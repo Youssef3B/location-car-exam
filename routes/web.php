@@ -10,6 +10,7 @@ use App\Http\Controllers\ManageSalesController;
 use App\Http\Controllers\ManageMessagesController;
 use App\Http\Controllers\ManageStatsController;
 use App\Http\Controllers\ManageRentalsController;
+use App\Http\Controllers\CarsPgeController;
 
 
 /*
@@ -60,11 +61,11 @@ Route::get('/admin/dashboard', [ManageStatsController::class, 'index'])->name('a
 
     // Route to accept a rental request
     // This route handles the POST request from the "Approve" button
-    Route::post('/rentals/{id}/accept', [ManageRentalsController::class, 'accept'])->name('rentals.accept');
+ Route::post('/rentals/{id}/accept', [ManageRentalsController::class, 'accept'])->name('rentals.accept');
 
     // Route to decline a rental request
     // This route handles the POST request from the "Decline" button
-    Route::post('/rentals/{id}/decline', [ManageRentalsController::class, 'decline'])->name('rentals.decline');
+Route::post('/rentals/{id}/decline', [ManageRentalsController::class, 'decline'])->name('rentals.decline');
 
     // Optional: Route to mark a rental as complete
     // This route handles the POST request from the "Mark as Completed" button
@@ -73,6 +74,11 @@ Route::get('/admin/dashboard', [ManageStatsController::class, 'index'])->name('a
     // Route to delete a rental record
     // This route handles the DELETE request from the "Delete" button
     Route::delete('/rentals/{id}', [ManageRentalsController::class, 'destroy'])->name('rentals.destroy');
+
+
+
+
+    Route::get('/cars', [CarsPgeController::class, 'index']);
 
 
 

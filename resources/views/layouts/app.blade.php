@@ -7,6 +7,7 @@
   <script src="https://kit.fontawesome.com/yourkit.js" crossorigin="anonymous"></script>
 </head>
 <body>
+  
 
   {{-- ✅ Include the global header --}}
   @include('partials.header')
