@@ -24,7 +24,7 @@
       </a>
     </div>
     <div class="nav-item">
-      <a href="{{ route('admin.rentals') }}" class="nav-link {{ request()->routeIs('admin.rentals') ? 'active' : '' }}">
+      <a href="{{ route('rentals.index') }}" class="nav-link {{ request()->routeIs('admin.rentals') ? 'active' : '' }}">
         <i class="fas fa-calendar-check"></i>
         <span>Manage Rentals</span>
       </a>

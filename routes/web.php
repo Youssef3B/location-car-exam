@@ -8,6 +8,8 @@ use App\Http\Controllers\DashboardadminController;
 use App\Http\Controllers\ManageUsersController;
 use App\Http\Controllers\ManageSalesController;
 use App\Http\Controllers\ManageMessagesController;
+use App\Http\Controllers\ManageStatsController;
+use App\Http\Controllers\ManageRentalsController;
 
 
 /*
@@ -26,7 +28,7 @@ Route::get('/', [HomeController::class, 'home']);
 Route::get('/dashboardUser', [DashboarduserController::class, 'DahboardUser']);
 Route::get('/admin', [DashboardadminController::class, 'DashboardAdminView'])->name('admin.dashboard');
 Route::get('/admin/cars', [DashboardadminController::class, 'DashboardAdminCarsView'])->name('admin.cars');
-Route::get('/admin/rentals', [DashboardadminController::class, 'DashboardAdminRentalsView'])->name('admin.rentals');
+// Route::get('/admin/rentals', [DashboardadminController::class, 'DashboardAdminRentalsView'])->name('admin.rentals');
 Route::get('/admin/messages', [DashboardadminController::class, 'DashboardAdminMessagesView'])->name('admin.messages');
 
 
@@ -46,6 +48,31 @@ Route::post('/users/{user}/toggle-block', [ManageUsersController::class, 'toggle
 Route::get('/admin/sales', [ManageSalesController::class, 'index'])->name('admin.sales');
 
 Route::get('/admin/messages', [ManageMessagesController::class, 'index'])->name('admin.messages');
+
+
+Route::get('/admin/dashboard', [ManageStatsController::class, 'index'])->name('admin.dashboard');
+
+
+
+
+
+ Route::get('/admin/rentals', [ManageRentalsController::class, 'index'])->name('rentals.index');
+
+    // Route to accept a rental request
+    // This route handles the POST request from the "Approve" button
+    Route::post('/rentals/{id}/accept', [ManageRentalsController::class, 'accept'])->name('rentals.accept');
+
+    // Route to decline a rental request
+    // This route handles the POST request from the "Decline" button
+    Route::post('/rentals/{id}/decline', [ManageRentalsController::class, 'decline'])->name('rentals.decline');
+
+    // Optional: Route to mark a rental as complete
+    // This route handles the POST request from the "Mark as Completed" button
+    Route::post('/rentals/{id}/complete', [ManageRentalsController::class, 'complete'])->name('rentals.complete');
+
+    // Route to delete a rental record
+    // This route handles the DELETE request from the "Delete" button
+    Route::delete('/rentals/{id}', [ManageRentalsController::class, 'destroy'])->name('rentals.destroy');
 
 
 
