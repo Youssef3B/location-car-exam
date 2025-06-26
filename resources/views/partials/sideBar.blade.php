@@ -12,7 +12,7 @@
       </a>
     </div>
     <div class="nav-item">
-      <a href="{{ route('admin.users') }}" class="nav-link {{ request()->routeIs('admin.users') ? 'active' : '' }}">
+      <a href="{{ route('users.index') }}" class="nav-link {{ request()->routeIs('admin.users') ? 'active' : '' }}">
         <i class="fas fa-users"></i>
         <span>Manage Users</span>
       </a>

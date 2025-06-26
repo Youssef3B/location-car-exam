@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboarduserController;
 use App\Http\Controllers\DashboardadminController;
+use App\Http\Controllers\ManageUsersController;
 
 
 /*
@@ -25,7 +26,6 @@ Route::get('/admin', [DashboardadminController::class, 'DashboardAdminView'])->n
 Route::get('/admin/cars', [DashboardadminController::class, 'DashboardAdminCarsView'])->name('admin.cars');
 Route::get('/admin/rentals', [DashboardadminController::class, 'DashboardAdminRentalsView'])->name('admin.rentals');
 Route::get('/admin/sales', [DashboardadminController::class, 'DashboardAdminSalesView'])->name('admin.sales');
-Route::get('/admin/users', [DashboardadminController::class, 'DashboardAdminUsersView'])->name('admin.users');
 Route::get('/admin/messages', [DashboardadminController::class, 'DashboardAdminMessagesView'])->name('admin.messages');
 
 
@@ -34,6 +34,14 @@ Route::post('/admin/cars', [DashboardadminController::class, 'store'])->name('ca
 Route::put('/admin/cars/{car}', [DashboardadminController::class, 'update'])->name('cars.update');
 Route::delete('/admin/cars/{car}', [DashboardadminController::class, 'destroy'])->name('cars.destroy');
 Route::get('/admin/cars', [DashboardadminController::class, 'manageCars'])->name('admin.cars');
+
+
+
+
+Route::get('/admin/users', [ManageUsersController::class, 'index'])->name('users.index');
+Route::post('/users/{user}/toggle-block', [ManageUsersController::class, 'toggleBlock'])->name('users.toggleBlock');
+
+
 
 
 
