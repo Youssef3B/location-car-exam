@@ -11,6 +11,7 @@ use App\Http\Controllers\ManageMessagesController;
 use App\Http\Controllers\ManageStatsController;
 use App\Http\Controllers\ManageRentalsController;
 use App\Http\Controllers\CarsPgeController;
+use App\Http\Controllers\CarDetailssPgeController;
 
 
 /*
@@ -79,6 +80,7 @@ Route::post('/rentals/{id}/decline', [ManageRentalsController::class, 'decline']
 
 
     Route::get('/cars', [CarsPgeController::class, 'index']);
+Route::get('/cars/{car}/details', [CarDetailssPgeController::class, 'show'])->name('cars.details');
 
 
 

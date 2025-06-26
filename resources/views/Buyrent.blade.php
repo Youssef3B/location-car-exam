@@ -665,17 +665,17 @@
                                 @else
                                     ${{ number_format($car->price) }} <span>/ negotiable</span>
                                 @endif
-                                                                    ${{ number_format($car->price) }} <span>/ negotiable</span>
-
+                                {{-- Your original line below was duplicate, removed it:
+                                     ${{ number_format($car->price) }} <span>/ negotiable</span>
+                                --}}
                             </div>
                             <div class="car-features">
                                 <span class="car-feature">
                                     <i class="fas fa-gas-pump"></i> {{ $car->fuel_type }}
                                 </span>
-        
-                              
                             </div>
-                            <a href="#" class="btn btn-outline">View Details</a>
+                            {{-- HERE IS THE CHANGE --}}
+                            <a href="{{ route('cars.details', ['car' => $car->id]) }}" class="btn btn-outline">View Details</a>
                         </div>
                     </div>
                 @empty
@@ -686,20 +686,6 @@
             <div class="pagination">
                 {{ $cars->links('vendor.pagination.default') }}
             </div>
-            {{--
-                The default Laravel pagination view might not perfectly match your existing CSS.
-                If you prefer to style it yourself or use your custom styles,
-                you might need to publish the pagination views:
-                php artisan vendor:publish --tag=laravel-pagination
-
-                Then you can customize `resources/views/vendor/pagination/default.blade.php`
-                or create a new one, and refer to it like:
-                {{ $cars->links('vendor.pagination.your-custom-view') }}
-
-                For now, I'm using 'vendor.pagination.default' as a placeholder.
-                You can remove the 'vendor.pagination.default' argument to use Laravel's default Tailwind/Bootstrap styling if you don't want custom styling initially.
-            --}}
-
         </div>
     </section>
 

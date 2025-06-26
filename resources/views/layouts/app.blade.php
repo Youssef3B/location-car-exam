@@ -11,6 +11,7 @@
 
   {{-- ✅ Include the global header --}}
   @include('partials.header')
+  
 
   {{-- Main content --}}
   <main>
