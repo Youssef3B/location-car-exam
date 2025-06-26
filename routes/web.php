@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboarduserController;
 use App\Http\Controllers\DashboardadminController;
 use App\Http\Controllers\ManageUsersController;
+use App\Http\Controllers\ManageSalesController;
 
 
 /*
@@ -25,7 +26,6 @@ Route::get('/dashboardUser', [DashboarduserController::class, 'DahboardUser']);
 Route::get('/admin', [DashboardadminController::class, 'DashboardAdminView'])->name('admin.dashboard');
 Route::get('/admin/cars', [DashboardadminController::class, 'DashboardAdminCarsView'])->name('admin.cars');
 Route::get('/admin/rentals', [DashboardadminController::class, 'DashboardAdminRentalsView'])->name('admin.rentals');
-Route::get('/admin/sales', [DashboardadminController::class, 'DashboardAdminSalesView'])->name('admin.sales');
 Route::get('/admin/messages', [DashboardadminController::class, 'DashboardAdminMessagesView'])->name('admin.messages');
 
 
@@ -42,6 +42,7 @@ Route::get('/admin/users', [ManageUsersController::class, 'index'])->name('users
 Route::post('/users/{user}/toggle-block', [ManageUsersController::class, 'toggleBlock'])->name('users.toggleBlock');
 
 
+Route::get('/admin/sales', [ManageSalesController::class, 'index'])->name('admin.sales');
 
 
 

@@ -21,10 +21,7 @@ class DashboardadminController extends Controller
     {
         return view('adminDashboard.manageRentals');
     }
-    public function DashboardAdminSalesView()
-    {
-        return view('adminDashboard.manageSales');
-    }
+
 
 
     public function DashboardAdminMessagesView()
