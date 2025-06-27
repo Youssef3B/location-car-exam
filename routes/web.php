@@ -14,6 +14,7 @@ use App\Http\Controllers\CarsPgeController;
 use App\Http\Controllers\CarDetailssPgeController;
 use App\Http\Controllers\MessagesPgeController;
 use App\Http\Controllers\AboutPgeController;
+use App\Http\Controllers\HistoryPgeController;
 
 
 /*
@@ -64,6 +65,10 @@ Route::post('/contact', [MessagesPgeController::class, 'store'])->name('contact.
 
 
 Route::get('/about', [AboutPgeController::class, 'index'])->name('about');
+
+
+
+Route::get('/history', [HistoryPgeController::class, 'index'])->name('history');
 
 
 

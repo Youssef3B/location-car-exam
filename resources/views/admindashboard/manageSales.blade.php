@@ -13,6 +13,7 @@
                     <th>Sale ID</th>
                     <th>Car</th>
                     <th>Buyer</th>
+                    <th>PhoneNumber</th>
                     {{-- <th>Seller</th> This column requires a specific relationship or logic for the seller --}}
                     <th>Date</th>
                     <th>Price</th>
@@ -25,6 +26,7 @@
                         <td>#S{{ $sale->id }}</td>
                         <td>{{ $sale->car->brand ?? 'N/A' }} {{ $sale->car->model ?? 'N/A' }}</td> {{-- Assuming 'make' and 'model' attributes on Car model --}}
                         <td>{{ $sale->buyer->name ?? 'N/A' }}</td> {{-- Assuming 'name' attribute on User model --}}
+                        <td>{{ $sale->buyer->phoneNumber ?? 'N/A' }}</td> {{-- Assuming 'name' attribute on User model --}}
                         {{-- <td>Premium Motors</td> If you have a seller relationship, you would access it here (e.g., $sale->seller->name) --}}
 <td>{{ $sale->purchased_at ? \Carbon\Carbon::parse($sale->purchased_at)->format('M d, Y') : 'N/A' }}</td>                        <td>${{ number_format($sale->price, 2) }}</td>
                         {{-- Action buttons are removed as per the request --}}

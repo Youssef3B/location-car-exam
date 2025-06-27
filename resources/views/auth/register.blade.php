@@ -260,6 +260,10 @@
         <label for="email">Email</label>
         <input type="email" id="email" name="email" value="{{ old('email') }}" placeholder="john@example.com" required />
     </div>
+    <div class="form-group">
+        <label for="phoneNumber">phoneNumber</label>
+        <input type="phoneNumber" id="phoneNumber" name="phoneNumber" value="{{ old('phoneNumber') }}" placeholder="0612345678" required />
+    </div>
 
     <div class="form-group">
         <label for="password">Password</label>
