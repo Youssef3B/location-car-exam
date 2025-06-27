@@ -15,6 +15,7 @@ use App\Http\Controllers\CarDetailssPgeController;
 use App\Http\Controllers\MessagesPgeController;
 use App\Http\Controllers\AboutPgeController;
 use App\Http\Controllers\HistoryPgeController;
+use App\Http\Controllers\EditUserPgeController;
 
 
 /*
@@ -69,8 +70,9 @@ Route::get('/about', [AboutPgeController::class, 'index'])->name('about');
 
 
 Route::get('/history', [HistoryPgeController::class, 'index'])->name('history');
-
-
+Route::get('/edituser', [EditUserPgeController::class, 'index'])->name('edituser');
+Route::post('/edituser', [EditUserPgeController::class, 'update'])->name('edituser.update');
+Route::put('/edituser', [EditUserPgeController::class, 'update'])->name('edituser.update');
 
  Route::get('/admin/rentals', [ManageRentalsController::class, 'index'])->name('rentals.index');
 
