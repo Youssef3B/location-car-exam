@@ -12,6 +12,7 @@ use App\Http\Controllers\ManageStatsController;
 use App\Http\Controllers\ManageRentalsController;
 use App\Http\Controllers\CarsPgeController;
 use App\Http\Controllers\CarDetailssPgeController;
+use App\Http\Controllers\MessagesPgeController;
 
 
 /*
@@ -56,6 +57,10 @@ Route::get('/admin/dashboard', [ManageStatsController::class, 'index'])->name('a
 
 
 
+Route::get('/contact', [MessagesPgeController::class, 'index'])->name('contact');
+Route::post('/contact', [MessagesPgeController::class, 'store'])->name('contact.store');
+    
+
 
 
  Route::get('/admin/rentals', [ManageRentalsController::class, 'index'])->name('rentals.index');
@@ -82,6 +87,9 @@ Route::post('/rentals/{id}/decline', [ManageRentalsController::class, 'decline']
     Route::get('/cars', [CarsPgeController::class, 'index']);
 Route::get('/cars/{car}/details', [CarDetailssPgeController::class, 'show'])->name('cars.details');
 
+Route::post('/cars/{car}/purchase', [CarDetailssPgeController::class, 'purchase'])
+    ->name('cars.purchase')
+    ->middleware('auth');
 
 
 

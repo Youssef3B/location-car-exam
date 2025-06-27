@@ -23,11 +23,10 @@
                 @forelse ($sales as $sale)
                     <tr>
                         <td>#S{{ $sale->id }}</td>
-                        <td>{{ $sale->car->make ?? 'N/A' }} {{ $sale->car->model ?? 'N/A' }}</td> {{-- Assuming 'make' and 'model' attributes on Car model --}}
+                        <td>{{ $sale->car->brand ?? 'N/A' }} {{ $sale->car->model ?? 'N/A' }}</td> {{-- Assuming 'make' and 'model' attributes on Car model --}}
                         <td>{{ $sale->buyer->name ?? 'N/A' }}</td> {{-- Assuming 'name' attribute on User model --}}
                         {{-- <td>Premium Motors</td> If you have a seller relationship, you would access it here (e.g., $sale->seller->name) --}}
-                        <td>{{ $sale->purchased_at ? $sale->purchased_at->format('M d, Y') : 'N/A' }}</td>
-                        <td>${{ number_format($sale->price, 2) }}</td>
+<td>{{ $sale->purchased_at ? \Carbon\Carbon::parse($sale->purchased_at)->format('M d, Y') : 'N/A' }}</td>                        <td>${{ number_format($sale->price, 2) }}</td>
                         {{-- Action buttons are removed as per the request --}}
                     </tr>
                 @empty
