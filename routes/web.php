@@ -13,6 +13,7 @@ use App\Http\Controllers\ManageRentalsController;
 use App\Http\Controllers\CarsPgeController;
 use App\Http\Controllers\CarDetailssPgeController;
 use App\Http\Controllers\MessagesPgeController;
+use App\Http\Controllers\AboutPgeController;
 
 
 /*
@@ -59,7 +60,10 @@ Route::get('/admin/dashboard', [ManageStatsController::class, 'index'])->name('a
 
 Route::get('/contact', [MessagesPgeController::class, 'index'])->name('contact');
 Route::post('/contact', [MessagesPgeController::class, 'store'])->name('contact.store');
-    
+
+
+
+Route::get('/about', [AboutPgeController::class, 'index'])->name('about');
 
 
 

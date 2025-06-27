@@ -3,41 +3,40 @@
 @section('content')
 
 <div class="main-content">
-    <!-- View Messages Section -->
+    <!-- View Contact Messages Section -->
     <div class="dashboard-section" id="messages">
-        <h2 class="section-title">💬 View Messages</h2>
+        <h2 class="section-title">💬 View Contact Messages</h2>
 
         <div class="message-list">
-            {{-- Loop through the messages passed from the controller --}}
-            @forelse ($messages as $message)
-                <div class="message-item {{ $message->read_at ? '' : 'unread' }}">
-                    {{-- Assuming sender has an 'avatar' or 'profile_picture' attribute, or use a placeholder --}}
+            {{-- Loop through the contact messages passed from the controller --}}
+            @forelse ($messages as $contactMessage) {{-- Renamed variable for clarity --}}
+                <div class="message-item"> {{-- Removed 'unread' class logic --}}
+                    {{-- Use the email from the Contact model for Gravatar --}}
                     <img
-                        src="{{ $message->sender->profile_picture ?? 'https://www.gravatar.com/avatar/' . md5(strtolower(trim($message->sender->email ?? 'default@example.com'))) . '?d=identicon' }}"
-                        alt="{{ $message->sender->name ?? 'Unknown User' }}"
+                        src="{{ 'https://www.gravatar.com/avatar/' . md5(strtolower(trim($contactMessage->email ?? 'default@example.com'))) . '?d=identicon' }}"
+                        alt="{{ $contactMessage->fullname ?? 'Unknown Contact' }}"
                         class="message-avatar"
                     />
                     <div class="message-content">
                         <div class="message-header">
-                            {{-- Display sender's name --}}
-                            <span class="message-sender">{{ $message->sender->name ?? 'Unknown Sender' }}</span>
+                            {{-- Display sender's full name from the Contact model --}}
+                            <span class="message-sender">{{ $contactMessage->fullname ?? 'Unknown Sender' }}</span>
                             {{-- Display time, formatted for readability --}}
-                            <span class="message-time">{{ $message->created_at->diffForHumans() }}</span>
+                            <span class="message-time">{{ $contactMessage->created_at->diffForHumans() }}</span>
                         </div>
-                        {{-- The 'subject' field is not in your migration, so this is illustrative.
-                             You might infer a subject from the message content or add a 'subject' column. --}}
+                        {{-- Display the subject from the Contact model --}}
                         <div class="message-subject">
-                            Message to {{ $message->receiver->name ?? 'Unknown Receiver' }}
+                            {{ $contactMessage->subject ?? 'No Subject' }}
                         </div>
                         <p class="message-preview">
-                            {{-- Display the message content --}}
-                            {{ Str::limit($message->message, 100) }} {{-- Limit message preview length --}}
+                            {{-- Display the message content, limited for preview --}}
+                            {{ Str::limit($contactMessage->message, 100) }}
                         </p>
                     </div>
                 </div>
             @empty
                 <div class="p-4 text-center text-gray-500">
-                    No messages to display.
+                    No contact messages to display.
                 </div>
             @endforelse
         </div>
@@ -91,19 +90,7 @@
         transform: translateY(-2px);
     }
 
-    .message-item.unread {
-        background-color: #fffde7; /* Light yellow for unread */
-        border-left: 5px solid #ffeb3b; /* Yellow border for unread */
-    }
-
-    .message-item.unread .message-sender {
-        font-weight: bold;
-        color: #333;
-    }
-
-    .message-item.unread .message-subject {
-        font-weight: 600;
-    }
+    /* Removed .message-item.unread specific styles as there's no 'read_at' field in Contact model */
 
     .message-avatar {
         width: 3.5rem;
