@@ -607,161 +607,58 @@
           <h1>Find Your Perfect Car</h1>
           <p>Browse thousands of cars for sale and rent at the best prices</p>
 
-          <div class="search-box">
-            <div class="search-tabs">
-              <div class="search-tab active">Buy</div>
-              <div class="search-tab">Rent</div>
-            </div>
-            <form class="search-form">
-              <div class="form-group">
-                <label for="brand">Brand</label>
-                <select id="brand" class="form-control">
-                  <option value="">Any Brand</option>
-                  <option value="audi">Audi</option>
-                  <option value="bmw">BMW</option>
-                  <option value="mercedes">Mercedes</option>
-                  <option value="toyota">Toyota</option>
-                  <option value="honda">Honda</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="model">Model</label>
-                <select id="model" class="form-control">
-                  <option value="">Any Model</option>
-                  <option value="sedan">Sedan</option>
-                  <option value="suv">SUV</option>
-                  <option value="hatchback">Hatchback</option>
-                  <option value="coupe">Coupe</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="price">Max Price</label>
-                <select id="price" class="form-control">
-                  <option value="">No Limit</option>
-                  <option value="10000">$10,000</option>
-                  <option value="20000">$20,000</option>
-                  <option value="30000">$30,000</option>
-                  <option value="50000">$50,000</option>
-                  <option value="75000">$75,000</option>
-                </select>
-              </div>
-              <button type="submit" class="search-btn">Search Cars</button>
-            </form>
-          </div>
+        
         </div>
       </div>
     </section>
 
     <!-- Featured Cars Section -->
-    <section class="featured-cars">
-      <div class="container">
-        <h2 class="section-title">Featured Vehicles</h2>
+   <!-- Featured Cars Section -->
+<section class="featured-cars">
+    <div class="container">
+        <h2 class="section-title">Latest Vehicles</h2>
         <p class="section-subtitle">
-          Explore our selection of premium cars available for purchase and
-          rental
+            Explore our newest additions
         </p>
 
-        <div class="cars-tabs">
-          <div class="cars-tab active">For Sale</div>
-          <div class="cars-tab">For Rent</div>
-        </div>
-
         <div class="cars-grid">
-          <!-- Car 1 -->
-          <div class="car-card">
-            <div class="car-img">
-              <img
-                src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1583&q=80"
-                alt="Car"
-              />
-              <div class="car-badge">For Sale</div>
+            @foreach($latestCars as $car)
+            <div class="car-card">
+                <div class="car-img">
+                    <img
+                    src="{{ asset('storage/' . $car->image) }}"
+                        alt="{{ $car->brand }} {{ $car->model }}"
+                    />
+                    <div class="car-badge">{{ $car->is_rental ? 'For Rent' : 'For Sale' }}</div>
+                </div>
+                <div class="car-info">
+                    <div class="car-meta">
+                        <span><i class="fas fa-calendar-alt"></i> {{ $car->year }}</span>
+                        <span><i class="fas fa-tachometer-alt"></i> {{ number_format($car->mileage) }} km</span>
+                    </div>
+                    <h3 class="car-title">{{ $car->brand }} {{ $car->model }}</h3>
+                    <div class="car-price">
+                        ${{ number_format($car->is_rental ? $car->priceRental : $car->price) }} 
+                        <span>/ {{ $car->is_rental ? 'day' : 'negotiable' }}</span>
+                    </div>
+                    <div class="car-features">
+                        <span class="car-feature">
+                            <i class="fas fa-gas-pump"></i> {{ $car->fuel_type }}
+                        </span>
+                        <span class="car-feature">
+                            <i class="fas fa-cog"></i> Automatic
+                        </span>
+                        <span class="car-feature">
+                            <i class="fas fa-user"></i> 5 Seats
+                        </span>
+                    </div>
+                            <a href="{{ route('cars.details', ['car' => $car->id]) }}" class="btn btn-outline">View Details</a>
+                </div>
             </div>
-            <div class="car-info">
-              <div class="car-meta">
-                <span><i class="fas fa-calendar-alt"></i> 2020</span>
-                <span><i class="fas fa-tachometer-alt"></i> 18,500 km</span>
-              </div>
-              <h3 class="car-title">BMW 3 Series</h3>
-              <div class="car-price">$32,000 <span>/ negotiable</span></div>
-              <div class="car-features">
-                <span class="car-feature"
-                  ><i class="fas fa-gas-pump"></i> Petrol</span
-                >
-                <span class="car-feature"
-                  ><i class="fas fa-cog"></i> Automatic</span
-                >
-                <span class="car-feature"
-                  ><i class="fas fa-user"></i> 5 Seats</span
-                >
-              </div>
-              <a href="#" class="btn btn-outline">View Details</a>
-            </div>
-          </div>
-
-          <!-- Car 2 -->
-          <div class="car-card">
-            <div class="car-img">
-              <img
-                src="https://images.unsplash.com/photo-1502877338535-766e1452684a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=80"
-                alt="Car"
-              />
-              <div class="car-badge">For Rent</div>
-            </div>
-            <div class="car-info">
-              <div class="car-meta">
-                <span><i class="fas fa-calendar-alt"></i> 2021</span>
-                <span><i class="fas fa-tachometer-alt"></i> 12,000 km</span>
-              </div>
-              <h3 class="car-title">Audi Q5</h3>
-              <div class="car-price">$120 <span>/ day</span></div>
-              <div class="car-features">
-                <span class="car-feature"
-                  ><i class="fas fa-gas-pump"></i> Diesel</span
-                >
-                <span class="car-feature"
-                  ><i class="fas fa-cog"></i> Automatic</span
-                >
-                <span class="car-feature"
-                  ><i class="fas fa-user"></i> 5 Seats</span
-                >
-              </div>
-              <a href="#" class="btn btn-outline">View Details</a>
-            </div>
-          </div>
-
-          <!-- Car 3 -->
-          <div class="car-card">
-            <div class="car-img">
-              <img
-                src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
-                alt="Car"
-              />
-              <div class="car-badge">For Sale</div>
-            </div>
-            <div class="car-info">
-              <div class="car-meta">
-                <span><i class="fas fa-calendar-alt"></i> 2019</span>
-                <span><i class="fas fa-tachometer-alt"></i> 45,000 km</span>
-              </div>
-              <h3 class="car-title">Mercedes C-Class</h3>
-              <div class="car-price">$28,500 <span>/ negotiable</span></div>
-              <div class="car-features">
-                <span class="car-feature"
-                  ><i class="fas fa-gas-pump"></i> Petrol</span
-                >
-                <span class="car-feature"
-                  ><i class="fas fa-cog"></i> Automatic</span
-                >
-                <span class="car-feature"
-                  ><i class="fas fa-user"></i> 5 Seats</span
-                >
-              </div>
-              <a href="#" class="btn btn-outline">View Details</a>
-            </div>
-          </div>
+            @endforeach
         </div>
-      </div>
-    </section>
+    </div>
+</section>
 
     <!-- CTA Section -->
     <section class="cta">

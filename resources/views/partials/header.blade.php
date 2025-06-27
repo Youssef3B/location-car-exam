@@ -202,9 +202,9 @@
       <a href="#" class="logo"> <i class="fas fa-car"></i> AutoDrive </a>
       <ul class="nav-links">
         <li><a href="{{ url('/') }}">Home</a></li>
-        <li><a href="">Buy & Rent</a></li>
-        <li><a href="">About</a></li>
-        <li><a href="">Contact</a></li>
+        <li><a href="{{ route('cars') }}">Buy Cars</a></li>
+        <li><a href="{{ route('about') }}">About</a></li>
+        <li><a href="{{ route('contact') }}">Contact</a></li>
       </ul>
 
       @auth
@@ -220,11 +220,11 @@
         </div>
         <ul class="dropdown-menu">
           @if(Auth::user()->role === 'admin')
-            <li><a href=""><i class="fas fa-tachometer-alt"></i> Admin Dashboard</a></li>
-            <li><a href=""><i class="fas fa-users-cog"></i> Manage Users</a></li>
+            <li><a href="{{ route('admin.dashboard') }}"><i class="fas fa-tachometer-alt"></i> Admin Dashboard</a></li>
           @endif
-          <li><a href=""><i class="fas fa-user-circle"></i> My Dashboard</a></li>
-          <li><a href=""><i class="fas fa-user-edit"></i> Edit Profile</a></li>
+          <li><a href="{{ route('edituser') }}"><i class="fas fa-user-edit"></i> Edit Profile</a></li>
+          <li><a href="{{ route('history') }}"><i class="fas fa-user-edit"></i> History</a></li>
+     
           <li>
             <form method="POST" action="{{ route('logout') }}">
               @csrf

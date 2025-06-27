@@ -24,6 +24,48 @@
         color: var(--dark);
         line-height: 1.6;
     }
+      /* Header Styles */
+    header {
+        background-color: white;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 100;
+    }
+
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 0;
+    }
+
+    .logo {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--primary);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+    }
+
+    .nav-links {
+        display: flex;
+        list-style: none;
+    }
+
+    .nav-links li {
+        margin-left: 30px;
+    }
+
+    .nav-links a {
+        text-decoration: none;
+        color: var(--dark);
+        font-weight: 600;
+        transition: color 0.3s;
+    }
+
 
     .container {
         max-width: 1200px;
@@ -332,17 +374,7 @@
                     </div>
                 @endif
 
-                @if($car->is_rental && $car->Status === 'available' )
-                    <div class="availability" style="margin-top: 10px">
-                        <span class="availability-icon">✓</span>
-                        <span>Available for rental @if($car->rentals->isNotEmpty()) from {{ \Carbon\Carbon::parse($car->rentals->max('end_date'))->addDay()->format('m/d') }} @endif</span>
-                    </div>
-                @else
-                    <div class="availability unavailable" style="margin-top: 10px">
-                        <span class="availability-icon">✗</span>
-                        <span>Not available for rental</span>
-                    </div>
-                @endif
+             
 
                 <div class="action-buttons">
                     @if($car->Status === 'available')
@@ -352,9 +384,7 @@
                             <button type="submit" class="btn btn-primary" style="width: 100%;">Buy Now</button>
                         </form>
                     @endif
-                    @if($car->is_rental  && $car->Status === 'available')
-                        <button class="btn btn-secondary" style="width: 100%;">Rent Now</button>
-                    @endif
+                 
                 </div>
 
                 <div

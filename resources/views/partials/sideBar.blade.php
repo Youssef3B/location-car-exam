@@ -23,12 +23,7 @@
         <span>Manage Cars</span>
       </a>
     </div>
-    <div class="nav-item">
-      <a href="{{ route('rentals.index') }}" class="nav-link {{ request()->routeIs('admin.rentals') ? 'active' : '' }}">
-        <i class="fas fa-calendar-check"></i>
-        <span>Manage Rentals</span>
-      </a>
-    </div>
+
     <div class="nav-item">
       <a href="{{ route('admin.sales') }}" class="nav-link {{ request()->routeIs('admin.sales') ? 'active' : '' }}">
         <i class="fas fa-shopping-bag"></i>
